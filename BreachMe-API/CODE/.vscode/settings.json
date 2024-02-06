@@ -1,0 +1,32 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "cybersafe",
+            "database": "cybersafe",
+            "username": "root",
+            "password": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "139.144.180.82",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "remote_cybersafe",
+            "database": "cybersafe",
+            "username": "cybersafe",
+            "askForPassword": true
+        }
+    ]
+}

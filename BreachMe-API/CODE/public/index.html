@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACHME API PROJECT DOCUMENTATION</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+  <div class="container mx-auto px-6 py-8 ">
+    <h1 class="text-3xl font-bold mb-4">BREACHME API PROJECT DOCUMENTATION</h1>
+
+    <h2 class="text-2xl font-bold mb-2">Project Overview</h2>
+    <p class="mb-4">The API is designed for a financial institution and provides various functionalities for managing user accounts, generating API keys for authentication, accepting payments, withdrawing funds, and viewing transactions. Additionally, certain administrative privileges are required for deleting users and viewing all transactions.</p>
+
+    <h2 class="text-2xl font-bold mb-2">DOCUMENTATION</h2>
+
+    <h3 class="text-xl font-bold mb-2">Base URL</h3>
+    <pre class="bg-gray-200 p-2 rounded mb-4">
+   http://localhost:3030/api
+    </pre>
+
+    <h3 class="text-xl font-bold mb-2">Authentication</h3>
+    <p class="mb-4">The API uses bearer token authentication. Include the <code class="bg-gray-200 px-1 rounded">token</code> in the request header for authenticated endpoints.</p>
+
+    <h3 class="text-xl font-bold mb-2">Endpoints</h3>
+
+    <h4 class="text-lg font-bold mb-2">Auth</h4>
+
+    <h5 class="text-lg font-bold mb-2">Login</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/users/login</code></li>
+      <li><strong>Method:</strong> <code>POST</code></li>
+      <li><strong>Description:</strong> Allows users to log in to their account and obtain an authentication token.</li>
+      <li><strong>Request:</strong></li>
+      <pre class="bg-gray-200 p-2 rounded">
+  {
+      "username": "admin",
+      "password": "admin123"
+  }
+      </pre>
+      <li><strong>Response:</strong> The response will include an authentication token.</li>
+    </ul>
+
+    <h5 class="text-lg font-bold mb-2">Register</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/users/register</code></li>
+      <li><strong>Method:</strong> <code>POST</code></li>
+      <li><strong>Description:</strong> Allows users to register an account.</li>
+      <li><strong>Request:</strong></li>
+      <pre class="bg-gray-200 p-2 rounded">
+  {
+      "username": "username",
+      "email": "myemail@gmail.com",
+      "password": "mypassword"
+  }
+      </pre>
+      <li><strong>Response:</strong> The response will include an authentication token.</li>
+    </ul>
+
+    <h5 class="text-lg font-bold mb-2">Generate API Key</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/users/generate-key</code></li>
+      <li><strong>Method:</strong> <code>POST</code></li>
+      <li><strong>Description:</strong> Generates an API key for the authenticated user.</li>
+      <li><strong>Request:</strong> Include the authentication token in the request header.</li>
+      <li><strong>Response:</strong> The response will include the generated API key.</li>
+    </ul>
+
+    <h4 class="text-lg font-bold mb-2">Users</h4>
+
+    <h5 class="text-lg font-bold mb-2">Update User</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/users/update/{user_id}</code></li>
+      <li><strong>Method:</strong> <code>PUT</code></li>
+      <li><strong>Description:</strong> Updates the details of an authorized user.</li>
+      <li><strong>Request:</strong> Include the authentication token in the request header.</li>
+      <li><strong>Response:</strong> The response will indicate a successful update.</li>
+    </ul>
+
+    <h5 class="text-lg font-bold mb-2">Delete User</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/users/delete/{user_id}</code></li>
+      <li><strong>Method:</strong> <code>DELETE</code></li>
+      <li><strong>Description:</strong> Deletes a user (admin only).</li>
+      <li><strong>Request:</strong> Include the authentication token in the request header.</li>
+      <li><strong>Response:</strong> The response will indicate a successful deletion.</li>
+    </ul>
+
+    <h5 class="text-lg font-bold mb-2">Get All Users</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/users/all</code></li>
+      <li><strong>Method:</strong> <code>GET</code></li>
+      <li><strong>Description:</strong> Retrieves all users (admin only).</li>
+      <li><strong>Request:</strong> Include the authentication token in the request header.</li>
+      <li><strong>Response:</strong> The response will include a list of all users.</li>
+    </ul>
+
+    <h4 class="text-lg font-bold mb-2">Transactions</h4>
+
+    <h5 class="text-lg font-bold mb-2">Get User Transactions</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/transactions/user</code></li>
+      <li><strong>Method:</strong> <code>GET</code></li>
+      <li><strong>Description:</strong> Retrieves transactions for the authenticated user related to the API key.</li>
+      <li><strong>Request Headers:</strong> Include the API key in the request header (Bearer token).</li>
+      <li><strong>Response:</strong> The response will include a list of user transactions.</li>
+    </ul>
+
+    <h5 class="text-lg font-bold mb-2">Pay</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/transactions/pay</code></li>
+      <li><strong>Method:</strong> <code>GET</code></li>
+      <li><strong>Description:</strong> Allows users to make payments.</li>
+      <li><strong>Request Parameters:</strong> Include the amount and API key in the request query parameters.</li>
+      <li><strong>Request Headers:</strong> Include the API key in the request header (Bearer token).</li>
+      <li><strong>Response:</strong> The response will indicate a successful payment.</li>
+    </ul>
+
+    <h5 class="text-lg font-bold mb-2">Withdraw</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/transactions/withdraw</code></li>
+      <li><strong>Method:</strong> <code>POST</code></li>
+      <li><strong>Description:</strong> Allows users to withdraw funds.</li>
+      <li><strong>Request Headers:</strong> Include the API key in the request header (Bearer token).</li>
+      <li><strong>Request Body:</strong></li>
+      <pre class="bg-gray-200 p-2 rounded">
+  {
+      "amount": 100
+  }
+      </pre>
+      <li><strong>Response:</strong> The response will indicate a successful withdrawal.</li>
+    </ul>
+
+    <h5 class="text-lg font-bold mb-2">Get All Transactions</h5>
+    <ul class="list-disc pl-8 mb-4">
+      <li><strong>Endpoint:</strong> <code>/transactions/all</code></li>
+      <li><strong>Method:</strong> <code>GET</code></li>
+      <li><strong>Description:</strong> Retrieves all transactions (admin only).</li>
+      <li><strong>Request:</strong> Include the authentication token in the request header.</li>
+      <li><strong>Response:</strong> The response will include a list of all transactions.</li>
+    </ul>
+
+    <h3 class="text-xl font-bold mb-2">If You wish to install the API Locally</h3>
+
+    <p><strong>Pre-Requisites</strong></p>
+    <p>To run this project locally, you will need NODEJS NPM and MYSQL (for the database) installed on your local machine.</p>
+
+    <p><strong>Clone the project</strong></p>
+    <p class="bg-gray-200 p-2 rounded">
+  git clone https://github.com/hamisirizwan/BreachMe-api.git
+    </p>
+
+    <p><strong>Go to the project directory</strong></p>
+    <pre class="bg-gray-200 p-2 rounded">
+  cd breachme-api
+    </pre>
+
+    <p><strong>Install dependencies</strong></p>
+    <pre class="bg-gray-200 p-2 rounded">
+  npm install
+    </pre>
+
+    <p><strong>Add Environment Variables</strong></p>
+    <p>To run this project, you will need to copy the .env.example contents to your .env file and update their values as you wish.</p>
+
+    <p><strong>Start the server</strong></p>
+    <pre class="bg-gray-200 p-2 rounded">
+  npm run dev
+    </pre>
+  </div>
+</body>
+
+</html>

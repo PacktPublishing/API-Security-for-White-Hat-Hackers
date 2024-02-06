@@ -1,0 +1,11 @@
+DROP TABLE apikeys;
+--@BLOCK
+CREATE TABLE apikeys (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  apikey TEXT NOT NULL,
+  user_id INT NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+--@block
+SELECT * FROM apikeys;
